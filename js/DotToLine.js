@@ -3,9 +3,9 @@ var DotToLine = function(canvas,cw,ch,options){
   this.cw = canvas.width = cw;
   this.ch = canvas.height = ch;
 
-  this.dotsCount = parseInt(cw * ch / 20000);
+  this.dotsCount = parseInt(cw * ch / 24000);
   this.maxDotsCount = this.dotsCount * 2;
-  this.dotsDistance = 100;
+  this.dotsDistance = 120;
   this.dotsColor = '255,255,255'
   
   if (options) {
@@ -79,7 +79,12 @@ DotToLine.prototype = {
     }
   },
   onMouseMove: function(){
-    document.addEventListener('mousemove', _moveDot)
+    document.addEventListener('mousedown', function(){
+      document.addEventListener('mousemove', _moveDot)
+    })
+    document.addEventListener('mouseup', function(){
+      document.removeEventListener('mousemove', _moveDot)
+    })
     var _this = this;
     function _moveDot(e) {
       var tx = e.pageX,
