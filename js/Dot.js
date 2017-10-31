@@ -1,8 +1,9 @@
-var Dot = function (ctx,cw,ch,dotsColor) {
-  this.ctx = ctx; // getContext for canvas
-  this.cw = cw; // width for canvas
-  this.ch = ch; // height for canvas
-  this.dotsColor = dotsColor
+var Dot = function (obj) {
+  this.ctx = obj.ctx; // getContext for canvas
+  this.cw = obj.cw; // width for canvas
+  this.ch = obj.ch; // height for canvas
+  this.dotsColor = obj.dotsColor
+  this.dotsDistance = obj.dotsDistance
   this.x; // X axes
   this.y; // Y axes
   this.r; // radius for a dot
@@ -19,12 +20,15 @@ Dot.prototype = {
     this.sy = Math.random() * 2 - 1;
     this.paintDot(this.x,this.y,this.r)
   },
-  update: function(){
+  update: function(callback){
     this.x = this.x + this.sx;
     this.y = this.y + this.sy;
-    if (this.x < 0 || this.x > this.cw || this.y < 0 || this.y > this.ch) {
-      this.init();
-      return
+    if (this.x < -this.dotsDistance || this.x > this.cw + this.dotsDistance || this.y < -this.dotsDistance || this.y > this.ch + this.dotsDistance) {
+      if(callback){
+        callback()
+      }else{
+        this.init()
+      }
     }
     this.paintDot(this.x, this.y, this.r)
   },
