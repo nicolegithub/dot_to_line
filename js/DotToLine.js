@@ -3,9 +3,9 @@ var DotToLine = function(canvas,cw,ch,options){
   this.cw = canvas.width = cw;
   this.ch = canvas.height = ch;
 
-  this.dotsCount = parseInt(cw * ch / 24000);
+  this.dotsCount = parseInt(cw * ch / 20000);
   this.maxDotsCount = this.dotsCount * 2;
-  this.dotsDistance = 120;
+  this.dotsDistance = 100;
   this.dotsColor = '255,255,255'
   
   if (options) {
