@@ -3,7 +3,7 @@ var DotToLine = function(canvas,cw,ch,options){
   this.cw = canvas.width = cw;
   this.ch = canvas.height = ch;
 
-  this.dotsCount = parseInt(cw * ch / 30000);
+  this.dotsCount = parseInt(cw * ch / 24000);
   this.maxDotsCount = this.dotsCount * 2;
   this.dotsDistance = 120;
   this.dotsColor = '255,255,255'
@@ -51,7 +51,7 @@ DotToLine.prototype = {
       for (var i = 0; i < _this.dotsArr.length; i ++) {
         var callback = null
         if (_this.dotsArr.length>_this.dotsCount) {
-          var callback = function(){
+          callback = function(){
             _this.dotsArr.splice(i,1)
           }
         }
